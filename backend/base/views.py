@@ -39,7 +39,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 key='access_token',
                 value=str(access_token),
                 httponly=True,
-                #secure=False,  # Set to False in development if HTTPS is not used
+                secure=False,  # Set to False in development if HTTPS is not used
                 samesite='None',
                 path='/'
             )
@@ -47,7 +47,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 key='refresh_token',
                 value=str(refresh_token),
                 httponly=True,
-                #secure=False,  # Set to False in development if HTTPS is not used
+                secure=False,  # Set to False in development if HTTPS is not used
                 samesite='None',
                 path='/'
             )

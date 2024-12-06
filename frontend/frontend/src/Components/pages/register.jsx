@@ -1,49 +1,34 @@
-
-import './login.css'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/endpoints';
+import '../login.css'
+import { register } from '../../api/endpoints';
 
 
 
-const Login = () => {
+const Register = () => {
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
 	const navigate = useNavigate();
 	const nav = useNavigate();
 
 	const handleNav =() => {
-		nav('/register')
+		nav('/login')
 	}
 
-	const handleLogin = async (e) => {
-		e.preventDefault();
-		const response = await login(username, password);
-		if (response.success) {
-
-			localStorage.setItem('access_token', response.access);
-        	localStorage.setItem('refresh_token', response.refresh);
-
-			localStorage.setItem('userRole', response.role); // Store the role
-			localStorage.setItem('isAuthenticated',"true"); // Store authentication state
-
-			
-
-			if (response.role === 'admin') {
+	const handleRegister = async (e) => {
 	
-				navigate('/admin'); // Redirect to admin dashboard
-			} else if (response.role === 'moderator') {
-				navigate('/moderator'); // Redirect to moderator page
-			} else {
-				navigate('/user'); // Redirect to user dashboard
-			}
+		e.preventDefault();
+		const response = await register(username, password,email);
+		if (response === "success") {
+            alert("User registered successfully!");
+            navigate("/login"); // Navigate to the login page
+        } else {
+            alert("Registration failed. Please try again.");
+        }
 		
-
-		} else {
-			alert('Invalid username or password'); // Show error to user
-		}
 	};
 
 	return (
@@ -61,22 +46,23 @@ const Login = () => {
 								<i className="login__icon fas fa-lock"></i>
 								<input onChange={(e) => setPassword(e.target.value)} type="password" className="login__input" placeholder="Password" />
 							</div>
-							<button onClick={handleLogin} className="button login__submit">
-								<span className="button__text">Log In Now</span>
+                            <div className="login__field">
+							<i className="login__icon fas fa-envelope"></i>
+								<input onChange={(e) => setEmail(e.target.value)} type="email" className="login__input" placeholder="Email" />
+							</div>
+
+							
+
+							<button onClick={handleRegister} className="button login__submit">
+								<span className="button__text">Sign_up</span>
 								<i className="button__icon fas fa-chevron-right"></i>
 							</button>
+
 							<p className="link login__link" onClick={handleNav}>
-   									 Don't have an account ? sign_up
+   									 already have an account ? sign_in
 							</p>
 						</form>
-						<div className="social-login">
-							
-							<div className="social-icons">
-								<a href="#" className="social-login__icon fab fa-instagram"></a>
-								<a href="#" className="social-login__icon fab fa-facebook"></a>
-								<a href="#" className="social-login__icon fab fa-twitter"></a>
-							</div>
-						</div>
+						
 					</div>
 					<div className="screen__background">
 						<span className="screen__background__shape screen__background__shape4"></span>
@@ -94,4 +80,4 @@ const Login = () => {
 
 }
 
-export default Login;
+export default Register;

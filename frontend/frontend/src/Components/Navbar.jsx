@@ -2,18 +2,29 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 //import './Navbar.css'; 
 
+
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleLogout =  () => {
+  const handleLogout = async  () => {
 
+ 
+ try {
     
+
     // Clear authentication state
     localStorage.removeItem('userRole');
     localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    
     // Redirect to login page
-    navigate('/');
+    navigate('/login');
 
+} catch (error) {
+  console.error("Logout error:", error);
+  // Optionally show a message or handle unexpected errors
+}
     
   
   };

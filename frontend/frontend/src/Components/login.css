@@ -7,6 +7,14 @@
 	font-family: Raleway, sans-serif;
 }
 
+.login__link {
+    display: block; /* Ensures it takes a new line */
+    margin-top: 16px; /* Adjust the value as needed */
+    text-align: center; /* Optional, to center the link */
+    cursor: pointer;
+	color: #3BC9DB; /* Makes it look clickable */
+}
+
 html, body {
     height: 100%;
     margin: 0;

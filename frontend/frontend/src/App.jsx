@@ -6,6 +6,7 @@ import AdminPage from './Components/pages/AdminPage.jsx';
 import UserPage from './Components/pages/UserPage.jsx';
 import ModeratorPage from './Components/pages/ModeratorPage.jsx';
 import ProtectedRoute from './Components/ProtectedRoute';
+import Register from './Components/pages/register.jsx';
 
 const App = () => {
   const [userRole, setUserRole] = useState(null);
@@ -31,7 +32,9 @@ const App = () => {
     <Router>
       <Routes>
         {/* Public Route */}
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<Register />} />
 
         {/* Protected Routes */}
         <Route
